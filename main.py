@@ -6,6 +6,7 @@ from PIL import Image
 # Define the classes for the predictions
 classes = ['Chickenpox', 'Cowpox', 'HFMD', 'Healthy', 'Measles', 'Monkeypox']
 
+
 # Function to preprocess the uploaded image
 def preprocess_image(image):
     image = Image.open(image)
@@ -15,8 +16,10 @@ def preprocess_image(image):
     image_arr = np.expand_dims(image_arr, axis=0)  # Add batch dimension
     return image_arr
 
+
 # Initialize Flask application
 app = Flask(__name__)
+
 
 @app.route('/DermaApp', methods=["POST"])
 def api():
@@ -38,6 +41,7 @@ def api():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     # Load the SavedModel
